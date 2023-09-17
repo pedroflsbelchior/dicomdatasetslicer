@@ -38,6 +38,7 @@ Shader "Unlit/3DSampler"
             float3 _min;
             float3 _max;
             float2 _window;
+            float4x4 _worldToLocal;
 
             float map(float s, float a1, float a2, float b1, float b2)
             {
@@ -50,6 +51,7 @@ Shader "Unlit/3DSampler"
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
                 float3 wpos = mul(unity_ObjectToWorld, v.vertex);
+                wpos = mul(_worldToLocal,wpos);
 
                 wpos.x = map(wpos.x, _min.x, _max.x, 0, 1);
                 wpos.y = map(wpos.y, _min.y, _max.y, 0, 1);

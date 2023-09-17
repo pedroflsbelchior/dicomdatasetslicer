@@ -61,16 +61,19 @@ public class DatasetViewer : MonoBehaviour
             _meshRenderer.material.SetVector("_flipAxis", _flipAxis);
         }
 
-        if (_minPos != DatasetMinAnchor.position)
+        if (_minPos != DatasetMinAnchor.localPosition)
         {
-            _minPos = DatasetMinAnchor.position;
+            _minPos = DatasetMinAnchor.localPosition;
             _meshRenderer.material.SetVector("_min", _minPos);
         }
 
-        if (_maxPos != DatasetMaxAnchor.position)
+        if (_maxPos != DatasetMaxAnchor.localPosition)
         {
-            _maxPos = DatasetMaxAnchor.position;
+            _maxPos = DatasetMaxAnchor.localPosition;
             _meshRenderer.material.SetVector("_max", _maxPos);
         }
+
+        _meshRenderer.material.SetMatrix("_worldToLocal", DatasetMinAnchor.parent.worldToLocalMatrix);
+
     }
 }
