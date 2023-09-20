@@ -75,7 +75,6 @@ Shader "Unlit/3DSampler"
                 }
 
                 float r = tex3D(_MainTex, i.uv).r;
-                r /= 4095;
                 r = map(r, _window.x, _window.y, 0, 1);
                 fixed4 col = fixed4(r, r, r, 1);
                 return col;
